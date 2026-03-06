@@ -1,0 +1,45 @@
+
+package com.example;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+@WebService
+public interface CalculatorService {
+
+    @WebMethod
+    int multiply(int num1, int num2);
+
+    @WebMethod
+    int divide(int num1, int num2);
+}
+SOAP SERVER
+package com.example;
+import javax.xml.ws.Endpoint;
+public class SOAPServer {
+	public static void main(String[] args) {
+		CalculatorServiceImpl implementor = new CalculatorServiceImpl();
+		String address = "http://localhost:8080/CalculatorService";
+        Endpoint.publish(address, implementor);
+        System.out.println("SOAP Service started at " + address);
+	}
+}
+
+CalculatorServiceIMp
+package com.example;
+
+import javax.jws.WebService;
+
+@WebService(endpointInterface = "com.example.CalculatorService")
+public class CalculatorServiceImpl implements CalculatorService {
+
+    @Override
+    public int multiply(int num1, int num2) {
+        return num1 * num2;
+    }
+
+    @Override
+    public int divide(int num1, int num2) {
+        return num1 / num2;
+    }
+}

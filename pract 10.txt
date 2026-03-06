@@ -1,0 +1,6 @@
+sudo snap microstack -beta
+snap list microstack
+sudo microstack init--auto--control
+microstack.openstack --version
+sudo snap get microstack config.credentials.keystone-password
+ip a
